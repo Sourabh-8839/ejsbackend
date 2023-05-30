@@ -18,7 +18,18 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.3",
+    "mysql8": "^2.17.3",
     "pug": "^2.0.3"
   },
-  "keywords": []
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sourabh-8839/ejsbackend.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Sourabh-8839/ejsbackend/issues"
+  },
+  "homepage": "https://github.com/Sourabh-8839/ejsbackend#readme"
 }

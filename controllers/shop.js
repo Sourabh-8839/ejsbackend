@@ -1,39 +1,46 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 
-exports.getProducts = (req, res, next) => {
-  Product.fetchAll().
-  then(([rows,filedata])=>{ res.render('shop/product-list', {
-    prods:rows,
+exports.getProducts = async(req, res, next) => {
+  const products=await Product.findAll();
+
+   res.render('shop/product-list', {
+    prods:products,
     pageTitle: 'All Products',
     path: '/products'
   })
-})
-.catch(err=>console.log(err));
-};
+}
+
 
 exports.getProduct = async(req, res, next) => {
   const prodId = req.params.productId;
 
-  const [product] =await Product.findById(prodId);
-  
-  const [data] = product;
-  console.log(product.title);
+  //Alternative of find by Primary key.
+
+  // const product=await Product.findAll({where:
+  //   {id:prodId}});
+  //   res.render('shop/product-detail', {
+  //     product:product[0],
+  //     pageTitle: product[0].title,
+  //     path: '/products'
+  //   });
+
+  const product=await Product.findByPk(prodId);
+  // console.log(product.title);
+ 
+
   res.render('shop/product-detail', {
-    product:data,
-    pageTitle: data.title,
+    product:product,
+    pageTitle: product.title,
     path: '/products'
   });
 
 };
 
 exports.getIndex =async(req, res, next) => {
-  const products=await Product.fetchAll();
-
- const [data] = products;
-
+  const products=await Product.findAll();
   res.render('shop/index', {
-    prods: data,
+    prods: products,
     pageTitle: 'Shop',
     path: '/'
   })}

@@ -13,16 +13,25 @@ exports.postAddProduct = async(req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+
+  // const p=await req.user.createProduct({
+  //   title:title,
+  //   price:price,
+  //   imageUrl:imageUrl,
+  //   description:description,
+    
+  // });
   
   const p=await Product.create({
     title:title,
     price:price,
     imageUrl:imageUrl,
-    description:description
+    description:description,
+    userId:req.user.id
   });
-  console.log(p);
+  // console.log(p);
    
-
+res.send(p);
 };
 
 exports.getEditProduct = async(req, res, next) => {
